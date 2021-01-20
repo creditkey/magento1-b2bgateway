@@ -3,10 +3,10 @@
  * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
  */
 
-
 class Creditkey_B2bgateway_CreditkeyController extends Mage_Core_Controller_Front_Action
 {
-    public function chargesAction(){
+    public function chargesAction()
+    {
         $response = [];
         $quote = Mage::getSingleton('checkout/session')->getQuote();
         $orderHelper = Mage::helper('b2bgateway/order');
@@ -14,14 +14,4 @@ class Creditkey_B2bgateway_CreditkeyController extends Mage_Core_Controller_Fron
         $this->getResponse()->setHeader('Content-type', 'application/json', true);
         return $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($charges->toFormData()));
     }
-
-    /**
-     * Check can display from CreditKey
-     */
-    public function isDisplayedAction()
-    {
-
-    }
-
-
 }

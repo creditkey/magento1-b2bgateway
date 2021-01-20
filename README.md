@@ -2,9 +2,7 @@
 
 ## Installation
 
-There are 2 ways to install
-
-### 1. Install using composer - recommended way
+### Install using composer - recommended way
 From your root Magento directory, run the following command:
 
 ```

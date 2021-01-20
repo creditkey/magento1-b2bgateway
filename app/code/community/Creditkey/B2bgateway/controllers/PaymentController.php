@@ -182,10 +182,8 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
     {
         try {
             /** @var Creditkey_B2bgateway_Helper_Order $orderHelper */
-            /** @var Mage_Sales_Model_Quote $quote */
             $orderHelper = Mage::helper('b2bgateway/order');
             $order = $this->getOrderFromSession();
-            $quote = Mage::getModel('sales/quote')->load($order->getQuoteId());
             $session = $this->getCheckoutSession();
             $paymentMethod = $order->getPayment()->getMethodInstance();
 

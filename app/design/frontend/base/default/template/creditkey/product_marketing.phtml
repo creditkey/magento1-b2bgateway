@@ -1,0 +1,33 @@
+<?php
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+
+/** @var $this Creditkey_B2bgateway_Block_Product_Marketing */
+$jsonConfig = $this->getJsonConfig();
+$marketingBlockId = 'product-creditkey-marketing';
+?>
+
+<?php if ($this->marketingEnable() && $jsonConfig):?>
+<div id="<?=$marketingBlockId ?>" class="clearfix clear"><?php echo __("Loading Credit Key...")?></div>
+
+<script type="text/javascript">
+    var creditkey_config = <?= json_encode($jsonConfig) ?>;
+    var marketing_url = '<?php echo $this->getMarketingUrl()?>';
+    jQuery(document).ready(function ($) {
+
+        var config = creditkey_config.ckConfig;
+        var ckClient = new ck.Client(config.publicKey, config.endpoint);
+        var charges = new ck.Charges(...config.charges);
+        // set a default display while loading
+        var elem = $('#<?=$marketingBlockId ?>');
+        elem.html('<?= __("Loading Credit Key...") ?>');
+
+        return ckClient.get_marketing_display(charges, "pdp", config.type, config.size)
+            .then(function(res) {
+                elem.html(res);
+            });
+
+    });
+</script>
+<?php endif?>

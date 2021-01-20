@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+-->
+<config>
+    <modules>
+        <Creditkey_B2bgateway>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Creditkey_B2bgateway>
+    </modules>
+</config>

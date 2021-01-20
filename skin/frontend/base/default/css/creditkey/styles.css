@@ -1,0 +1,28 @@
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+#dt_method_b2bgateway .creditkey {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.catalog-product-view #product-creditkey-marketing {
+    display: block;
+    clear: both;
+    padding: 0 0 10px 0;
+}
+
+.catalog-product-view #product-creditkey-marketing .creditkey {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 0;
+}
+.catalog-product-view #product-creditkey-marketing .creditkey .payment-icon {
+  padding-left: 10px;
+}
+/*# sourceMappingURL=styles.css.map */

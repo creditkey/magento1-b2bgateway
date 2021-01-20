@@ -1,0 +1,13 @@
+<?php
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+
+$apiHelper = Mage::helper('b2bgateway/credit_api');
+$orderHelper = Mage::helper('b2bgateway/order');
+/** @var Creditkey_B2bgateway_Helper_Marketing_Checkout $marketingHelper */
+$marketingHelper = Mage::helper('b2bgateway/marketing_checkout');
+$jsConfig = $marketingHelper->getJsonConfig();
+?>
+<script type="text/javascript">var creditkey_config = <?= json_encode($jsConfig) ?>;</script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/creditkey/opcheckout_creditkey.js') ?>"></script>

@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+-->
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <b2bgateway translate="label comment" module="b2bgateway">
+                    <label>Credit Key (Gateway)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <!--<order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>-->
+                        <allowspecific translate="label">
+                            <label>Payment Applicable From</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>61</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Countries Payment Applicable From</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>70</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                        </specificcountry>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sort_order>
+                        <endpoint translate="label">
+                            <label>Endpoint</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </endpoint>
+                        <publickey translate="label">
+                            <label>Public Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </publickey>
+                        <secretkey translate="label">
+                            <label>Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secretkey>
+                        <mode translate="label">
+                            <label>Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>140</sort_order>
+                            <source_model>b2bgateway/source_config_mode</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                        </mode>
+                        <display_type translate="label">
+                            <label>Display Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>b2bgateway/source_config_displaytype</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_type>
+                        <display_size translate="label">
+                            <label>Display Size</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>b2bgateway/source_config_displaysize</source_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_size>
+                        <marketing_product type="group" translate="label">
+                            <label>Marketing Content on Product Pages</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <fields>
+                                <active translate="label">
+                                    <label>Enabled</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </active>
+                                <price_range translate="label">
+                                    <label>Price Ranges</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>b2bgateway/source_config_pricerange</source_model>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </price_range>
+                                <display_type translate="label">
+                                    <label>Display Type</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>b2bgateway/source_config_displaytype</source_model>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </display_type>
+                                <display_size translate="label">
+                                    <label>Display Size</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>b2bgateway/source_config_displaysize</source_model>
+                                    <sort_order>40</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </display_size>
+                            </fields>
+                        </marketing_product>
+                    </fields>
+
+                </b2bgateway>
+            </groups>
+        </payment>
+    </sections>
+</config>

@@ -1,0 +1,20 @@
+{
+    "name": "creditkey/magento1-b2bgateway",
+    "description": "Creditkey Magento 1 Module",
+    "version": "1.0.9",
+    "type": "magento-module",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "^3.2",
+        "creditkey/creditkey-php": "^1.0"
+    },
+    "extra": {
+        "map": [
+            ["app/etc/modules/Creditkey_B2bgateway.xml", "app/etc/modules/Creditkey_B2bgateway.xml"],
+            ["app/code/community/Creditkey/B2bgateway", "app/code/community/Creditkey/B2bgateway"],
+            ["app/design/frontend/base/default/layout/creditkey", "app/design/frontend/base/default/layout/creditkey"],
+            ["app/design/frontend/base/default/template/creditkey", "app/design/frontend/base/default/template/creditkey"],
+            ["skin/frontend/base/default/js/creditkey", "skin/frontend/base/default/js/creditkey"],
+            ["skin/frontend/base/default/css/creditkey", "skin/frontend/base/default/css/creditkey"]
+        ]
+    }
+}

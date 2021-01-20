@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) creditkey.com, Inc. (http://www.creditkey.com)
+ */
+-->
+<layout version="0.1.0">
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addItem" ifConfig="payment/marketing_product/active" ><type>skin_css</type><name>css/creditkey/styles.css</name></action>
+            <action method="addItem" ifConfig="payment/marketing_product/active" ><type>skin_js</type><name>js/creditkey/creditkey-js.js</name></action>
+        </reference>
+        <reference name="product.info">
+            <block type="b2bgateway/product_marketing" ifconfig="payment/marketing_product/active" name="product.info.creditkey.marketing" as="product.marketing" template="creditkey/product_marketing.phtml" />
+        </reference>
+    </catalog_product_view>
+    <checkout_onepage_index translate="label">
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/creditkey/styles.css</name></action>
+            <action method="addItem" ifConfig="payment/marketing_product/active" ><type>skin_js</type><name>js/creditkey/creditkey-js.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="credit.key.info" after="checkout.onepage" template="creditkey/checkout/onepage/creditkey.phtml"/>
+        </reference>
+    </checkout_onepage_index>
+</layout>

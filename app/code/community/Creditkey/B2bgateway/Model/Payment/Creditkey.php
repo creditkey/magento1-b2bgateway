@@ -66,7 +66,7 @@ class Creditkey_B2bgateway_Model_Payment_Creditkey extends Mage_Payment_Model_Me
 
     public function __construct()
     {
-        $this->creditKeyApi = Mage::helper('b2bgateway/credit_api');;
+        $this->creditKeyApi = Mage::helper('b2bgateway/credit_api');
     }
 
     /**

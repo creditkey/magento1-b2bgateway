@@ -39,10 +39,17 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
     protected $checkoutSession;
 
 
-    public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $invokeArgs = array())
+    /**
+     * Creditkey_B2bgateway_PaymentController constructor.
+     *
+     * @param Zend_Controller_Request_Abstract $request
+     * @param Zend_Controller_Response_Abstract $response
+     * @param array $invokeArgs
+     */
+    public function __construct( $request, $response, $invokeArgs = array())
     {
         parent::__construct($request, $response, $invokeArgs);
-        $this->creditKeyApi = new \Creditkey_B2bgateway_Helper_Credit_Api();
+        $this->creditKeyApi = Mage::helper('b2bgateway/credit_api');
     }
 
     /**
@@ -208,8 +215,6 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
             if ($this->_request->getParam('modal')) {
                 $mode = 'modal';
             }
-
-            $this->creditKeyApi->configure();
 
             $redirectTo = \CreditKey\Checkout::beginCheckout(
                 $cartItems,

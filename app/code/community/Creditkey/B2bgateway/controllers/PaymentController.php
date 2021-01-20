@@ -5,7 +5,6 @@
 
 class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_Action
 {
-    const COOKIE_NAME = 'creditkey_first_checkout_order_complete';
     /**
      * Order model
      * @var Mage_Sales_Model_Order $order

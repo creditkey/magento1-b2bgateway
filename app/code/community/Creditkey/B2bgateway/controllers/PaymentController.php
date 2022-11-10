@@ -51,6 +51,26 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
         parent::__construct($request, $response, $invokeArgs);
         $this->creditKeyApi = Mage::helper('b2bgateway/credit_api');
     }
+    /**
+     * Get one page checkout model
+     *
+     * @return Mage_Checkout_Model_Type_Onepage
+     */
+    protected function getOnepage()
+    {
+        return Mage::getSingleton('checkout/type_onepage');
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function placeOrder()
+    {
+        $this->getOnepage()->getQuote()->collectTotals();
+        $this->getOnepage()
+            ->saveOrder();
+        return $this->getCheckoutSession()->getLastOrderId();
+    }
 
     /**
      * Get Quote
@@ -131,7 +151,7 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
      */
     public function returnAction()
     {
-        $orderId = $this->getRequest()->getParam('ref');
+        $orderId = $this->placeOrder();
         $ckOrderId = $this->getRequest()->getParam('key');
 
         $order = $this->getOrderById($orderId);

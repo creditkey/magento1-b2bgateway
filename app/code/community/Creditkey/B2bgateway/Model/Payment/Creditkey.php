@@ -81,7 +81,7 @@ class Creditkey_B2bgateway_Model_Payment_Creditkey extends Mage_Payment_Model_Me
      * Get Place Url
      * @return string
      */
-    public function getOrderPlaceRedirectUrl()
+    public function getCheckoutRedirectUrl()
     {
         return Mage::getUrl('b2bgateway/payment/sendTransaction', array('_secure' => true));
     }

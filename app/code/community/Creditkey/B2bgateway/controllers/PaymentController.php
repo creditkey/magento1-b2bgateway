@@ -51,26 +51,6 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
         parent::__construct($request, $response, $invokeArgs);
         $this->creditKeyApi = Mage::helper('b2bgateway/credit_api');
     }
-    /**
-     * Get one page checkout model
-     *
-     * @return Mage_Checkout_Model_Type_Onepage
-     */
-    protected function getOnepage()
-    {
-        return Mage::getSingleton('checkout/type_onepage');
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function placeOrder()
-    {
-        $this->getOnepage()->getQuote()->collectTotals();
-        $this->getOnepage()
-            ->saveOrder();
-        return $this->getCheckoutSession()->getLastOrderId();
-    }
 
     /**
      * Get Quote
@@ -144,6 +124,26 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
         }
         return $this->customerSession;
     }
+    /**
+     * Get one page checkout model
+     *
+     * @return Mage_Checkout_Model_Type_Onepage
+     */
+    protected function getOnepage()
+    {
+        return Mage::getSingleton('checkout/type_onepage');
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function placeOrder()
+    {
+        $this->getOnepage()->getQuote()->collectTotals();
+        $this->getOnepage()
+            ->saveOrder();
+        return $this->getCheckoutSession()->getLastOrderId();
+    }
 
     /**
      * Get response from CreditKey
@@ -155,7 +155,6 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
         $ckOrderId = $this->getRequest()->getParam('key');
 
         $order = $this->getOrderById($orderId);
-        $isOrderValid = $order->getId();
         $isOrderPaid = !($order->getState() == Mage_Sales_Model_Order::STATE_PENDING_PAYMENT);
 
         if (!$order->getId()) {
@@ -203,26 +202,25 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
         try {
             /** @var Creditkey_B2bgateway_Helper_Order $orderHelper */
             $orderHelper = Mage::helper('b2bgateway/order');
-            $order = $this->getOrderFromSession();
-            $session = $this->getCheckoutSession();
-            $paymentMethod = $order->getPayment()->getMethodInstance();
+            $quote = $this->getQuote();
 
-            if (!$order->getId() && !$paymentMethod->validateRedirect($order)) {
+            if (!$quote->getIsActive()) {
                 $this->norouteAction();
                 return;
             }
-            $remoteId = $order->getIncrementId();
+            $quote->reserveOrderId();
+            $remoteId = $quote->getReservedOrderId();
             $customerId = null;
             $customerSession = Mage::getSingleton('customer/session');
             if ($customerSession->isLoggedIn()) {
                 $customerId = $customerSession->getCustomerId();
             }
-            $cartItems = $orderHelper->buildCartContents($order);
-            $billingAddress = $orderHelper->buildAddress($order->getBillingAddress());
-            $shippingAddress = $orderHelper->buildAddress($order->getShippingAddress());
-            $charges = $orderHelper->buildChargesWithUpdatedGrandTotal($order);
+            $cartItems = $orderHelper->buildCartContents($quote);
+            $billingAddress = $orderHelper->buildAddress($quote->getBillingAddress());
+            $shippingAddress = $orderHelper->buildAddress($quote->getShippingAddress());
+            $charges = $orderHelper->buildChargesWithUpdatedGrandTotal($quote);
             $params = [
-                'ref' => $order->getId(),
+                'ref' => $quote->getId(),
                 'key' => '%CKKEY%',
                 '_secure' => true
             ];
@@ -260,7 +258,7 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
      */
     public function cancelAction()
     {
-        return $this->_redirect('checkout/onepage/failure');
+        return $this->_redirect('checkout/onepage/');
     }
 
 }

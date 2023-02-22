@@ -170,7 +170,7 @@ class Creditkey_B2bgateway_PaymentController extends Mage_Core_Controller_Front_
             $orderPayment->setAdditionalInformation('ckOrderId', $ckOrderId);
 
             try {
-                $orderPayment->authorize(true, round($order->getGrandTotal(), 2));
+                $orderPayment->authorize(true, number_format(round($order->getGrandTotal(), 2), 2));
                 $order->save();
             } catch (Exception $exception) {
                 Mage::log($exception->getMessage(), null, 'creditkey.log');

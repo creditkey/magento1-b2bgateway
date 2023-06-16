@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Core_Sales>
+            <version>1.0.0</version>
+        </Core_Sales>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Core_Sales before="Mage_Adminhtml">Core_Sales_Adminhtml</Core_Sales>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <global>
+        <models>
+            <b2bgateway>
+                <rewrite>
+                    <observer>Core_Sales_Model_Observer</observer>
+                </rewrite>
+            </b2bgateway>
+            <sales>
+                <rewrite>
+                    <order_creditmemo>Core_Sales_Model_Order_Creditmemo</order_creditmemo>
+                </rewrite>
+            </sales>
+        </models>
+    </global>
+</config>

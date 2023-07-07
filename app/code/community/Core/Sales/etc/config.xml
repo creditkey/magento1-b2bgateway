@@ -28,6 +28,11 @@
                     <order_creditmemo>Core_Sales_Model_Order_Creditmemo</order_creditmemo>
                 </rewrite>
             </sales>
+            <b2bgateway>
+                <rewrite>
+                    <payment_creditkey>Core_Sales_Model_Payment_Creditkey</payment_creditkey>
+                </rewrite>
+            </b2bgateway>
         </models>
     </global>
 </config>

@@ -13,7 +13,11 @@ class Creditkey_B2bgateway_Model_Observer
         $oldState = $order->getOrigData('state');
 
         if ($newState !== $oldState) {
-            Mage::helper('b2bgateway/credit_api')->updateOrderStatus($order);
+	    try {
+                Mage::helper('b2bgateway/credit_api')->updateOrderStatus($order);
+            } catch (\Exception $e) {
+                Mage::log($e->getMessage(), null, 'creditkey.log');
+            }
         }
     }
 }

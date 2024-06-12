@@ -14,7 +14,11 @@ class Core_Sales_Model_Observer extends Creditkey_B2bgateway_Model_Observer
 		$refundOffline = $order->getRefundOffline();
 
         if ((($newState !== $oldState) && !$refundOffline)) {
-            Mage::helper('b2bgateway/credit_api')->updateOrderStatus($order);
+            try {
+                Mage::helper('b2bgateway/credit_api')->updateOrderStatus($order);
+            } catch (\Exception $e) {
+                Mage::log($e->getMessage(), null, 'creditkey.log');
+            }
         }
     }
 }
